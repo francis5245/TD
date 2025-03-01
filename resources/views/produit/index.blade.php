@@ -59,34 +59,39 @@
                                         <label class="form-check-label mb-0" for="ordercheck">&nbsp;</label>
                                     </div>
                                 </th>
+                                <th>Ref</th>
+
                                 <th>Design</th>
                                 <th>Prix Unitaire</th>
                                 <th>ImageProd</th>
                                 <th>Code</th>
-                                <th>Catégorie</th>
+                                <th>Libelle</th>
                                 <th style="width: 120px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($produits as $produit )
                             <tr>
+                                
                                 <td>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="ordercheck1">
                                         <label class="form-check-label mb-0" for="ordercheck1">&nbsp;</label>
                                     </div>
                                 </td>
-
-                                <td><a href="javascript: void(0);" class="text-reset fw-bold">#NZ1572</a> </td>
+                          
+                                <td><a href="javascript: void(0);" class="text-reset fw-bold"> {{ $produit->ref }}</a> </td>
+                                <td><a href="javascript: void(0);" class="text-reset fw-bold"> {{ $produit->design }}</a> </td>
                                 <td>
-                                    04 Apr, 2020
+                                    {{ $produit->pu }}
                                 </td>
-                                <td>Walter Brown</td>
-
+                                <td> {{ $produit->imageprod}}</td>
+                              
                                 <td>
-                                    $172
+                                    {{ $produit->categorie->code }}
                                 </td>
                                 <td>
-                                    <div class="badge bg-success-subtle text-success  font-size-12">Paid</div>
+                                    <div class="badge bg-success-subtle text-success  font-size-12">{{ $produit->categorie->libelle }}</div>
                                 </td>
                                 <td id="tooltip-container1">
                                     <a href="javascript:void(0);" class="me-3 text-primary"
@@ -98,39 +103,14 @@
                                         data-bs-placement="top" title="Delete"><i
                                             class="mdi mdi-trash-can font-size-18"></i></a>
                                 </td>
-                            </tr>
-                             
+                        
 
-                            
-                                <td>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="ordercheck8">
-                                        <label class="form-check-label mb-0" for="ordercheck8">&nbsp;</label>
-                                    </div>
-                                </td>
-
-                                <td><a href="javascript: void(0);" class="text-reset fw-bold">#NZ1565</a> </td>
-                                <td>
-                                    29 Mar, 2020
-                                </td>
-                                <td>Jamison Clark</td>
-
-                                <td>
-                                    $123
-                                </td>
-                                <td>
-                                    <div class="badge bg-success-subtle text-success  font-size-12">Paid</div>
-                                </td>
-                                <td id="tooltip-container7">
-                                    <a href="javascript:void(0);" class="me-3 text-primary"
-                                        data-bs-container="#tooltip-container7" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Edit"><i
-                                            class="mdi mdi-pencil font-size-18"></i></a>
-                                    <a href="javascript:void(0);" class="text-danger"
-                                        data-bs-container="#tooltip-container7" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Delete"><i
-                                            class="mdi mdi-trash-can font-size-18"></i></a>
-                                </td>
+                            </td>
+                               
+                                      
+                                  
+                
+                                @endforeach
                             
                         </tbody>
                     </table>
