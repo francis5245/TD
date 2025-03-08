@@ -21,7 +21,7 @@ class ProduitFactory extends Factory
             'ref' => fake()->iban(),
     'design' => fake()->name(),
     'pu' => fake()-> numberBetween(100, 800) ,
-    'imageprod'=> fake()->url(),
+    'images'=> fake()->url(),
     'categorie_id'=> fake()-> numberBetween(1, 10) 
         ];
     }

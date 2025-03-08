@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('ref');
             $table->string('design');
             $table->string('pu');
-            $table->string('imageprod');
+            $table->string('images')->nullable();
             //  Clé étrangère de la table categories
             $table->unsignedBigInteger('categorie_id');
             //D2claration de la clé étrangères

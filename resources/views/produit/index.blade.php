@@ -48,7 +48,15 @@
 
                 <h4 class="card-title mb-4">Latest Transactions</h4>
 
-                <div class="table-responsive">
+                <div class="table-responsive ">
+                  @if(session("success") )
+
+              {{session('success') }}
+                  @endif
+                    <div class="d-flex justify-content-end my-4">
+                        
+                        <button type="button" class="mb-2 btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ajouter</button>
+                        </div>
                     <table class="table table-centered datatable dt-responsive nowrap" data-bs-page-length="5"
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="table-light">
@@ -71,7 +79,7 @@
                         </thead>
                         <tbody>
                             @foreach ($produits as $produit )
-                            <tr>
+                            <td>
                                 
                                 <td>
                                     <div class="form-check">
@@ -114,10 +122,70 @@
                             
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="{{ route('produit.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Ajouter un produit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Ref</label>
+                            <input type="text" class="form-control" name="ref">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Design</label>
+                            <input type="text" class="form-control" name="design">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Prix Unitaire</label>
+                            <input type="number" class="form-control" name="pu">
+                        </div>
+                         
+                        ...
+                        <div class="mb-3">
+                            <label class="form-label">Code</label>
+                            <select class="form-control" name="categorie_code_id">
+                                @foreach ($categories as $categorie)
+                                    <option value="{{ $categorie->id }}" {{ old('categorie_code_id') == $categorie->id ? 'selected' : '' }}>{{ $categorie->code }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Libelle</label>
+                            <select class="form-control" name="categorie_libelle_id">
+                                @foreach ($categories as $categorie)
+                                    <option value="{{ $categorie->id }}" {{ old('categorie_libelle_id') == $categorie->id ? 'selected' : '' }}>{{ $categorie->libelle }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+...
+                        <div class="mb-3">
+                            <h4>Image du produit</h4>
+                            <input type="file" class="form-control" name="images[]" multiple>
+                        </div>
+                    </div>
+                
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+                
+                    
+                </div>
+            </div>
+        </div>
     </div>
     <!-- end row -->
     <!-- JAVASCRIPT -->

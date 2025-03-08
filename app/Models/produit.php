@@ -12,7 +12,7 @@ class produit extends Model
     'ref',
     'design',
     'pu',
-    'imageprod',
+    'images',
     'categorie_id'
     ];
     
